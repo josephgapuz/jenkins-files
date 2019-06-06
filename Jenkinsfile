@@ -6,9 +6,9 @@ pipeline {
         git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/sandbox.git'
       }
     }
-    stage('Build-Test') {
+    stage('Build-Test-Deploy') {
       steps {
-        bat label: '', script: 'mvn clean install'
+        bat label: '', script: 'mvn clean install deploy'
         archiveArtifacts(artifacts: 'target/sandbox-1.0-SNAPSHOT.war', fingerprint: true)
       }
     }    
@@ -16,12 +16,7 @@ pipeline {
       steps {
         bat label: '', script: 'sonar-scanner'
       }
-    } 
-    stage('Deploy To Artifactory') {
-      steps {
-        bat label: '', script: 'mvn deploy'
-      }
-    }
+    }     
     stage('Deploy To Tomcat') {
       steps {
         build job: 'GOT-Deploy-to-Dev', parameters: [string(name: 'BRANCH_NAME', value: 'master')]
