@@ -6,7 +6,7 @@ pipeline {
         git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/sandbox.git'
       }
     }
-    stage('Maven Compile, JUnit Test & Package') {
+    stage('Build-Test') {
       steps {
         sh 'mvn clean install'
         archiveArtifacts(artifacts: 'target/sandbox-1.0-SNAPSHOT.war', fingerprint: true)
