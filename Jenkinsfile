@@ -16,8 +16,13 @@ pipeline {
       steps {
         bat label: '', script: 'sonar-scanner'
       }
-    }   
-    stage('Deploy') {
+    } 
+    stage('Deploy To Artifactory') {
+      steps {
+        bat label: '', script: 'mvn deploy'
+      }
+    }
+    stage('Deploy To Tomcat') {
       steps {
         build job: 'GOT-Deploy-to-Dev', parameters: [string(name: 'BRANCH_NAME', value: 'master')]
       }
