@@ -6,16 +6,11 @@ pipeline {
         git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/sandbox.git'
       }
     }
-    stage('Compile') {
+    stage('Compile & Run JUnit Test') {
       steps {
-        sh 'mvn compile -Dmaven.test.skip=true'
+        sh 'mvn compile test'
       }
-    }
-    stage('JUnit Test') {
-      steps {
-        sh 'mvn test'
-      }
-    }
+    }    
     stage('SonarQube') {
       steps {
         sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.host.url=http://localhost:9000'
