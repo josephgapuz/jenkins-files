@@ -14,7 +14,7 @@ pipeline {
     }    
     stage('SonarQube') {
       steps {
-        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.host.url=http://localhost:9000'
+        sh 'sonar-scanner'
       }
     }   
     stage('Deploy') {
