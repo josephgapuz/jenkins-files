@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        build '../GOT-Deploy-to-Dev'
+        build job: 'GOT-Deploy-to-Dev', parameters: [string(name: 'BRANCH_NAME', value: 'master')]
       }
     }
   }
