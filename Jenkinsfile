@@ -8,13 +8,13 @@ pipeline {
     }
     stage('Build-Test') {
       steps {
-        sh 'mvn clean install'
+        bat label: '', script: 'mvn clean install'
         archiveArtifacts(artifacts: 'target/sandbox-1.0-SNAPSHOT.war', fingerprint: true)
       }
     }    
     stage('SonarQube') {
       steps {
-        sh 'sonar-scanner'
+        bat label: '', script: 'sonar-scanner'
       }
     }   
     stage('Deploy') {
