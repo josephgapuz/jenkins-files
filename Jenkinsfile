@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout Project') {
       steps {
-        git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/jenkins-files.git'
+        git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/sandbox.git'
       }
     }
     stage('Compile') {
