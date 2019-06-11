@@ -19,7 +19,7 @@ pipeline {
     }     
     stage('Deploy To Tomcat') {
       steps {
-        build job: 'GOT-Deploy-to-Dev', parameters: [string(name: 'BRANCH_NAME', value: 'master')]
+        build job: 'GOT-Deploy-to-Dev'
       }
     }
   }
