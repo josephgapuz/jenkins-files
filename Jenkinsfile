@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        bat label: '', script: 'mvn release:prepare release:perform -Dmaven.test.skip=true'
+        bat label: '', script: 'mvn release:prepare release:perform -Darguments="-Dmaven.test.skip=true"'
         archiveArtifacts(artifacts: 'target/*SNAPSHOT.war', fingerprint: true)
       }
     } 
