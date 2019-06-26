@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Build-Test') {
       steps {
-        bat label: '', script: 'mvn clean install'        
+        bat label: '', script: 'mvn clean install'   
+        junit allowEmptyResults: true, testResults: '**target/surefire-reports/*.xml'
       }
     }    
     stage('SonarQube') {
