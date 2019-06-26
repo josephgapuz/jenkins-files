@@ -20,7 +20,7 @@ pipeline {
     stage('Deploy') {
       steps {
         bat label: '', script: 'mvn release:prepare release:perform -Darguments="-Dmaven.test.skip=true"'
-        archiveArtifacts(artifacts: 'target/*SNAPSHOT.war', fingerprint: true)
+        archiveArtifacts(artifacts: 'target/*.war', fingerprint: true)
       }
     } 
     stage('Deploy To Tomcat') {
