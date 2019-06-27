@@ -12,12 +12,12 @@ pipeline {
         junit allowEmptyResults: true, testResults: '**target/surefire-reports/*.xml'
       }
     }    
-    stage('SonarQube') {
+    stage('Run SonarQube') {
       steps {
         bat label: '', script: 'sonar-scanner'
       }
     }
-    stage('Deploy') {
+    stage('Deploy Artifact to Archiva') {
       steps {
         bat label: '', script: 'mvn release:prepare release:perform'
         archiveArtifacts(artifacts: 'target/*.war', fingerprint: true)
