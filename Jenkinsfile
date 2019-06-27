@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Deploy Artifact to Archiva') {
       steps {
-        bat label: '', script: 'mvn release:prepare release:perform'
+        bat label: '', script: 'mvn deploy'
         archiveArtifacts(artifacts: 'target/*.war', fingerprint: true)
       }
     } 
