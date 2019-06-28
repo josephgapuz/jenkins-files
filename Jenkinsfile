@@ -20,7 +20,7 @@ pipeline {
         bat label: '', script: 'sonar-scanner'
       }
     }
-    stage('Deploy Artifact to Archiva') {
+    stage('Deploy SNAPSHOT Artifact to Archiva') {
       steps {
         bat label: '', script: 'mvn deploy'
         archiveArtifacts(artifacts: 'target/*.war', fingerprint: true)
