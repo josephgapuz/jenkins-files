@@ -24,6 +24,7 @@ pipeline
       }
     }
     
+    
     stage('Build-Test') 
     {
       steps 
@@ -33,6 +34,7 @@ pipeline
       }
     }
         
+        
     stage('Run SonarQube') 
     {
       steps 
@@ -40,6 +42,7 @@ pipeline
         bat label: '', script: 'sonar-scanner'
       }
     }
+    
     
     stage('Deploy SNAPSHOT Artifact to Archiva') 
     {
@@ -50,6 +53,7 @@ pipeline
       }
     }
      
+     
     stage('Deploy To Tomcat') 
     {
       steps 
@@ -57,6 +61,7 @@ pipeline
         build job: 'GOT-Deploy-to-Dev'
       }
     }
+    
     
   }
   
@@ -69,6 +74,7 @@ pipeline
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            
             
 	    	echo 'Sending slack notification!'
             
