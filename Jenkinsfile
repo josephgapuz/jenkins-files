@@ -62,7 +62,7 @@ pipeline
   
   post 
   {
-        always 
+        always   
         { 
             echo 'Sending email notification!'
             
