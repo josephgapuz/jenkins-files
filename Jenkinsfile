@@ -9,6 +9,9 @@ pipeline {
     stage('Checkout Project') {
       steps {
         git credentialsId: 'GitHub', url: 'https://github.com/josephgapuz/sandbox.git'
+	slackSend channel: '#got',
+                color: COLOR_MAP['SUCCESS'],
+                message: "*'STARTED':* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}"      
       }
     }
     stage('Build-Test') {
